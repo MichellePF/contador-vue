@@ -1,28 +1,26 @@
 <template>
     <div class="wrap">
         <h4>Contador Vue</h4>
-        <p>Clicks:{{contador}}</p>
-        <button :class="{active}" @mouseover="hover = true" class="boton" @click="clicks">Click!!!</button>
+        <p>Clicks:{{contador_clicks}}</p>
+        <button class="boton" @click="clicks">Click!!!</button>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'Contador',
-        data: function(){
-            return {
-                contador: 0,
-                hover: false
-            }
-            
-        },
-        methods: {
-            clicks(){
-                this.contador+= 1;
-            }
-            
+export default {
+    name: 'Contador',
+    computed: {
+        contador_clicks() {
+            return this.$store.state.contador
+        }   
+    },
+    methods: {
+        clicks(){
+            this.$store.commit('incremento')
         }
+            
     }
+}
 </script>
 
 <style scoped>
